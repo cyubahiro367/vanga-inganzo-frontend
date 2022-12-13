@@ -51,18 +51,25 @@
                             mb-0
                           "
                         >
-                          <a class="small" href="password.html"
-                            >Forgot Password?</a
-                          >
+                        <router-link
+                                to="/forget-password"
+                                class="small"
+                                >
+                                <a>Forgot Password?</a>
+                                </router-link>
   
-                          <button class="btn btn-primary" @click="submitForm" >Login</button>
+                          <button class="btn btn-primary" @click="submitForm" >Reset Password</button>
   
                         </div>
                       </form>
                     </div>
                     <div class="card-footer text-center py-3">
                       <div class="small">
-                        <a href="register.html">Need an account? Sign up!</a>
+                        <router-link
+                                to="/login"
+                                >
+                                <a>Have an account? Go to login</a>
+                                </router-link>
                       </div>
                     </div>
                   </div>
@@ -97,8 +104,12 @@ export default {
         return{
             email: null,
             password: null,
-            password_confirmation: null
+            password_confirmation: null,
+            clicked: false
         }
+    },
+    methods: {
+        async submitForm() {}
     }
 };
 </script>

@@ -37,16 +37,25 @@
                             mb-0
                           "
                         >
-                          <a class="small" href="login.html">Return to login</a>
+                          <router-link
+                                to="/login"
+                                class="small"
+                                >
+                                <a>Return to login</a>
+                                </router-link>
                           <a class="btn btn-primary" href="login.html"
-                            >Reset Password</a
+                            >Submit</a
                           >
                         </div>
                       </form>
                     </div>
                     <div class="card-footer text-center py-3">
                       <div class="small">
-                        <a href="register.html">Need an account? Sign up!</a>
+                        <router-link
+                                to="/reset-password"
+                                >
+                                <a>Need to reset password account? Reset password!</a>
+                                </router-link>
                       </div>
                     </div>
                   </div>
