@@ -1,32 +1,41 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
+  <div>
+
+    <Header 
+          v-if="
+            $route.path !== '/admin' &&
+            $route.path !== '/register'&&
+            $route.path !== '/login'&&
+            $route.path !== '/permission'&&
+            $route.path !== '/forget-password'&&
+            $route.path !== '/reset-password'
+          "
+    />
     <router-view/>
+
+    <Footer 
+          v-if="
+            $route.path !== '/admin'&&
+            $route.path !== '/register'&&
+            $route.path !== '/login'&&
+            $route.path !== '/permission'&&
+            $route.path !== '/forget-password'&&
+            $route.path !== '/reset-password'
+          "
+    />
+    <vue-progress-bar></vue-progress-bar>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+import SideBar from './components/Admin/SideBar.vue'
+export default {
+  components:{
+    Header,
+    Footer,
+    SideBar
+  }
 }
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
