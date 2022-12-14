@@ -6,8 +6,8 @@
       <div id="layoutSidenav_content">
         <DataTable 
           :parameters="parameters"
-          HeadTitle = "Keys"
-          Title = "Keys"
+          HeadTitle = "Users"
+          Title = "Users"
         />
         <Footer />
       </div>

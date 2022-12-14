@@ -99,20 +99,62 @@
   </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-    data(){
-        return{
-            email: null,
-            password: null,
-            password_confirmation: null,
-            clicked: false
+  data() {
+    return {
+      emails: "",
+      tokens: "",
+      password: "",
+      password_confirmation: "",
+    };
+  },
+  methods: {
+    async submitData() {
+      //  alert(1);
+      this.$Progress.start();
+      const data = {
+        email: this.emails,
+        tokenkey: this.tokens,
+        password: this.password,
+        password_confirmation: this.password_confirmation,
+      };
+      try {
+        const response = await axios.post("/api/auth/reset-password/", data);
+        this.$Progress.finish();
+
+        const token = response.data.token;
+
+        localStorage.setItem("token", token);
+
+        this.$store.commit("setToken", token);
+
+        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+
+        const toPath = this.$route.query.to || "/";
+
+        this.$router.push(toPath);
+      } catch (error) {
+        this.$Progress.fail();
+        this.clicked = false;
+        if (error.response) {
+          this.$noty.error(`${error.response.data.errors[0]}`);
+        } else {
+          this.$noty.error(error.message);
+
+          console.log(JSON.stringify(error));
         }
+      }
     },
-    methods: {
-        async submitForm() {}
-    }
+  },
+  mounted() {
+    let p1 = this.$route.params.email;
+    this.emails = p1;
+
+    let params2 = this.$route.query.token;
+    this.tokens = params2;
+  },
 };
 </script>
 
-<style>
-</style>

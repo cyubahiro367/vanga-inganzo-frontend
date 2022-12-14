@@ -6,9 +6,11 @@
             $route.path !== '/admin' &&
             $route.path !== '/register'&&
             $route.path !== '/login'&&
-            $route.path !== '/permission'&&
+            $route.path !== '/permissions'&&
             $route.path !== '/forget-password'&&
-            $route.path !== '/reset-password'
+            $route.path !== '/reset-password'&&
+            $route.path !== '/keys'&&
+            $route.path !== '/users'
           "
     />
     <router-view/>
@@ -18,9 +20,11 @@
             $route.path !== '/admin'&&
             $route.path !== '/register'&&
             $route.path !== '/login'&&
-            $route.path !== '/permission'&&
+            $route.path !== '/permissions'&&
             $route.path !== '/forget-password'&&
-            $route.path !== '/reset-password'
+            $route.path !== '/reset-password'&&
+            $route.path !== '/keys'&&
+            $route.path !== '/users'
           "
     />
     <vue-progress-bar></vue-progress-bar>

@@ -5,9 +5,13 @@ import store from './store'
 import axios from 'axios'
 import VueProgressBar from 'vue-progressbar'
 import VueNoty from 'vuejs-noty'
+import DataTable from "@andresouzaabreu/vue-data-table";
+import "@andresouzaabreu/vue-data-table/dist/DataTable.css";
 
 
 
+
+Vue.component("data-table", DataTable);
 
 Vue.use(VueNoty)
 const options = {

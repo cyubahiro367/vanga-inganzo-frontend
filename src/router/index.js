@@ -6,6 +6,8 @@ import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/Register.vue'
 import DashboardView from '../views/Admin/Dashboard.vue'
 import PermissionView from '../views/Admin/Permission.vue'
+import UserView from '../views/Admin/User.vue'
+import KeyView from '../views/Admin/Key.vue'
 import ForgetPasswordView from '../views/ForgetPassword.vue'
 import ResetPasswordView from '../views/ResetPassword.vue'
 
@@ -45,9 +47,25 @@ const routes = [
     }
   },
   {
-    path: '/permission',
-    name: 'Permission',
+    path: '/permissions',
+    name: 'Permissions',
     component: PermissionView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/keys',
+    name: 'Keys',
+    component: KeyView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/users',
+    name: 'Users',
+    component: UserView,
     meta: {
       requiresAuth: true
     }

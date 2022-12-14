@@ -45,6 +45,13 @@
               </ul>
             </li>
             <li><a href="contact.html">Contact Us</a></li>
+            <li>
+              <router-link
+                                to="/login"
+                                >
+                                <a class="btn-get-started animate__animated animate__fadeInUp">Login</a>
+                                </router-link>
+                                </li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>

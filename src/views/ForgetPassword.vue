@@ -43,9 +43,7 @@
                                 >
                                 <a>Return to login</a>
                                 </router-link>
-                          <a class="btn btn-primary" href="login.html"
-                            >Submit</a
-                          >
+                                <button class="btn btn-primary" @click="submitForm" >Submit</button>
                         </div>
                       </form>
                     </div>
@@ -85,14 +83,37 @@
   </template>
   
   <script>
+  import axios from 'axios'
+  import 'vuejs-noty/dist/vuejs-noty.css'
   export default {
-      data(){
-          return{
-              email: null,
-          }
+    data(){
+      return{
+        email: ''
       }
-  };
-  </script>
+    },
+    methods:{
+      async SubmitForm(){
+        this.$Progress.start();
+        const data = {
+          email: this.email,
+        };
+        try {
+          const resp = await axios.post('/api/auth/forgot-password/',data);
+          this.$Progress.finish();
+          this.$noty.success("Thank for password resetting , check your email link to confirm reseting ");
+        } catch (error) {
+          this.$Progress.fail()
+          if (error.response) {
+            for (const property in error.response.data.errors) {
+              this.$noty.error(`${error.response.data.errors[property]}`);
+            }
+          } else {
+            this.$noty.error("Something went wrong! Please try again");
   
-  <style>
-  </style>
+            console.log(JSON.stringify(error));
+          }
+        }
+      }
+    }
+  }
+  </script>
