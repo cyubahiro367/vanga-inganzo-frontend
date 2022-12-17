@@ -1,45 +1,57 @@
 <template>
   <div>
-
-    <Header 
-          v-if="
-            $route.path !== '/admin' &&
-            $route.path !== '/register'&&
-            $route.path !== '/login'&&
-            $route.path !== '/permissions'&&
-            $route.path !== '/forget-password'&&
-            $route.path !== '/reset-password'&&
-            $route.path !== '/keys'&&
-            $route.path !== '/users'
-          "
+    <Header
+      v-if="
+        $route.path !== '/admin' &&
+        $route.path !== '/register' &&
+        $route.path !== '/login' &&
+        $route.path !== '/permissions' &&
+        $route.path !== '/forget-password' &&
+        $route.path !== '/reset-password' &&
+        $route.path !== '/keys' &&
+        $route.path !== '/users'
+      "
     />
-    <router-view/>
+    <router-view />
 
-    <Footer 
-          v-if="
-            $route.path !== '/admin'&&
-            $route.path !== '/register'&&
-            $route.path !== '/login'&&
-            $route.path !== '/permissions'&&
-            $route.path !== '/forget-password'&&
-            $route.path !== '/reset-password'&&
-            $route.path !== '/keys'&&
-            $route.path !== '/users'
-          "
+    <Footer
+      v-if="
+        $route.path !== '/admin' &&
+        $route.path !== '/register' &&
+        $route.path !== '/login' &&
+        $route.path !== '/permissions' &&
+        $route.path !== '/forget-password' &&
+        $route.path !== '/reset-password' &&
+        $route.path !== '/keys' &&
+        $route.path !== '/users'
+      "
     />
     <vue-progress-bar></vue-progress-bar>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
-import SideBar from './components/Admin/SideBar.vue'
+import axios from "axios";
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
+import SideBar from "./components/Admin/SideBar.vue";
 export default {
-  components:{
+  components: {
     Header,
     Footer,
-    SideBar
-  }
-}
+    SideBar,
+  },
+  created() {
+    this.$store.commit("initializeStore");
+
+    const token = this.$store.state.token;
+
+    if (token) {
+      console.log(token);
+      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    } else {
+      axios.defaults.headers.common["Authorization"] = "";
+    }
+  },
+};
 </script>

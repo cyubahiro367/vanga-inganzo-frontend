@@ -4,10 +4,10 @@
     <div id="layoutSidenav">
       <SideBar />
       <div id="layoutSidenav_content">
-        <DataTable 
+        <DataTable
           :parameters="parameters"
-          HeadTitle = "Permissions"
-          Title = "Permissions"
+          HeadTitle="Permissions"
+          Title="Permissions"
         />
         <Footer />
       </div>
@@ -16,6 +16,7 @@
 </template>
   
   <script>
+import axios from "axios";
 import Header from "../../components/Admin/Header.vue";
 import SideBar from "../../components/Admin/SideBar.vue";
 import Footer from "../../components/Admin/Footer.vue";
@@ -61,6 +62,23 @@ export default {
         ],
       },
     };
+  },
+  mounted() {
+    this.getPermission();
+  },
+  methods: {
+    async getPermission() {
+      this.$Progress.start();
+
+      try {
+        const response = await axios.get("/api/permission-list");
+        this.$Progress.finish();
+
+        this.parameters.data = response.data;
+      } catch (error) {
+        this.$Progress.fail();
+      }
+    },
   },
 };
 </script>

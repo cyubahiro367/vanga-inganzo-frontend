@@ -4,11 +4,7 @@
     <div id="layoutSidenav">
       <SideBar />
       <div id="layoutSidenav_content">
-        <DataTable 
-          :parameters="parameters"
-          HeadTitle = "Keys"
-          Title = "Keys"
-        />
+        <DataTable :parameters="parameters" HeadTitle="Keys" Title="Keys" />
         <Footer />
       </div>
     </div>
@@ -16,6 +12,7 @@
 </template>
   
   <script>
+import axios from "axios";
 import Header from "../../components/Admin/Header.vue";
 import SideBar from "../../components/Admin/SideBar.vue";
 import Footer from "../../components/Admin/Footer.vue";
@@ -39,28 +36,33 @@ export default {
             title: "ID",
           },
           {
-            key: "name",
-            title: "Name",
+            key: "value",
+            title: "value",
           },
           {
-            key: "email",
-            title: "Email",
-          },
-          {
-            key: "phoneNumber",
-            title: "Phone Number",
-          },
-          {
-            key: "since",
-            title: "Since",
-          },
-          {
-            key: "status",
-            title: "Status",
+            key: "permissionName",
+            title: "Permission",
           },
         ],
       },
     };
+  },
+  mounted() {
+    this.getKey();
+  },
+  methods: {
+    async getKey() {
+      this.$Progress.start();
+
+      try {
+        const response = await axios.get("/api/key-list");
+        this.$Progress.finish();
+
+        this.parameters.data = response.data;
+      } catch (error) {
+        this.$Progress.fail();
+      }
+    },
   },
 };
 </script>

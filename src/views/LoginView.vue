@@ -41,24 +41,21 @@
                           mb-0
                         "
                       >
-                      <router-link
-                                to="/forget-password"
-                                >
-                                <a>Forgot Password?</a>
-                                </router-link>
+                        <router-link to="/forget-password">
+                          <a>Forgot Password?</a>
+                        </router-link>
 
-                        <button class="btn btn-primary" @click="submitForm" >Login</button>
-
+                        <button class="btn btn-primary" @click="submitForm">
+                          Login
+                        </button>
                       </div>
                     </form>
                   </div>
                   <div class="card-footer text-center py-3">
                     <div class="small">
-                      <router-link
-                                to="/reset-password"
-                                >
-                                <a>Need to reset password account? Reset password!</a>
-                                </router-link>
+                      <router-link to="/reset-password">
+                        <a>Need to reset password account? Reset password!</a>
+                      </router-link>
                     </div>
                   </div>
                 </div>
@@ -120,7 +117,7 @@ export default {
         this.$store.commit("setPermissionName", permissionName);
         axios.defaults.headers.common["Authorization"] = "Bearer " + token;
         const toPath = this.$route.query.to || "/admin";
-        this.$router.push(toPath);
+        this.$router.push(toPath).catch(()=>{});
       } catch (error) {
         this.$Progress.fail();
         this.clicked = false;
