@@ -37,7 +37,7 @@ export default {
             title: "ID",
           },
           {
-            key: "value",
+            key: "keyValue",
             title: "value",
           },
           {
