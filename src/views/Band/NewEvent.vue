@@ -35,16 +35,35 @@
                     <label for="inputPassword">Venue</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <!-- <flat-pickr v-model="startTime"/> -->
-                    <!-- <flat-pickr
+                    <label for="inputPassword">Start Date</label>
+                    <flat-pickr
                       id="example-flatpickr-datetime"
                       class="form-control bg-white"
                       :config="config"
-                      placeholder="select date"
+                      placeholder="select Start date"
                       v-model="startTime"
-                    ></flat-pickr> -->
-                    <!-- <label for="inputPassword">Venue</label> -->
+                    ></flat-pickr>
                   </div>
+                  <div class="form-floating mb-3">
+                    <label for="inputPassword">End Date</label>
+                    <flat-pickr
+                      id="example-flatpickr-datetime"
+                      class="form-control bg-white"
+                      :config="config"
+                      placeholder="select End date"
+                      v-model="endTime"
+                    ></flat-pickr>
+                  </div>
+                  <!-- <div class="form-floating mb-3"> -->
+                    <input
+                      class="form-control"
+                      id="inputFlier "
+                      type="file"
+                      @change="onFileChanged"
+                      placeholder="choose Flier"
+                    />
+                    <!-- <label for="inputPassword">Flier</label> -->
+                  <!-- </div> -->
                   <div
                     class="
                       d-flex
@@ -89,11 +108,36 @@ export default {
       name: null,
       venue: null,
       startTime: null,
+      endTime: null,
+      imageFile: null,
+      image: null,
+      updatePicture: false,
       config:{
         enableTime: true,
         dateFormat: "Y-m-d H:i"
       }
     }
+  },
+  methods:{
+    onFileChanged(event) {
+      this.image = event.target.files[0];
+      if (event.target.files[0] === undefined) {
+        this.$noty.error("Select an image please");
+      } else {
+        if (this.image.size > 10000000) {
+          this.$noty.error("Image size limit is 10MB");
+        } else {
+          if (
+            this.image.type !== "image/jpeg" &&
+            this.image.type !== "image/jpg" &&
+            this.image.type !== "image/png"
+          ) {
+
+            this.$noty.error("Only JPG, JPEG and PNG file types are allowed");
+          }
+        }
+      }
+    },
   }
 };
 </script>
