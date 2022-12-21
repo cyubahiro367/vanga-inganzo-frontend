@@ -10,12 +10,12 @@
             </div>
             Dashboard
           </a>
-          <!-- <router-link to="/users">
+          <router-link to="/event">
             <a class="nav-link">
               <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-              Users
+              Event
             </a>
-          </router-link> -->
+          </router-link>
         </div>
       </div>
       <div class="sb-sidenav-footer">

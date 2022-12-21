@@ -11,6 +11,8 @@ import KeyView from '../views/Admin/Key.vue'
 import ForgetPasswordView from '../views/ForgetPassword.vue'
 import ResetPasswordView from '../views/ResetPassword.vue'
 import BandView from '../views/Band/Dashboard.vue'
+import EventView from '../views/Band/Event.vue'
+import NewEventView from '../views/Band/NewEvent.vue'
 
 Vue.use(VueRouter)
 
@@ -100,6 +102,22 @@ const routes = [
     path: '/band',
     name: 'Band',
     component: BandView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/event',
+    name: 'Event',
+    component: EventView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/newEvent',
+    name: 'NewEvent',
+    component: NewEventView,
     meta: {
       requiresAuth: true
     }

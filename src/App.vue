@@ -10,7 +10,9 @@
         $route.path !== '/reset-password' &&
         $route.path !== '/keys' &&
         $route.path !== '/users'&&
-        $route.path !== '/band'
+        $route.path !== '/band'&&
+        $route.path !== '/event'&&
+        $route.path !== '/newEvent'
       "
     />
     <router-view />
@@ -25,7 +27,9 @@
         $route.path !== '/reset-password' &&
         $route.path !== '/keys' &&
         $route.path !== '/users'&&
-        $route.path !== '/band'
+        $route.path !== '/band'&&
+        $route.path !== '/event'&&
+        $route.path !== '/newEvent'
       "
     />
     <vue-progress-bar></vue-progress-bar>
