@@ -7,12 +7,12 @@ import VueProgressBar from 'vue-progressbar'
 import VueNoty from 'vuejs-noty'
 import DataTable from "@andresouzaabreu/vue-data-table";
 import "@andresouzaabreu/vue-data-table/dist/DataTable.css";
-import flatPickr from 'vue-flatpickr-component';
-import 'flatpickr/dist/flatpickr.css';
+// import flatPickr from 'vue-flatpickr-component';
+// import 'flatpickr/dist/flatpickr.css';
 
-console.log(flatPickr);
+// console.log(flatPickr);
 
-Vue.use(flatPickr)
+// Vue.use(flatPickr)
 Vue.component("data-table", DataTable);
 
 Vue.use(VueNoty)

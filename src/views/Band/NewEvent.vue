@@ -35,7 +35,7 @@
                     <label for="inputPassword">Venue</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <flat-pickr v-model="startTime"/>
+                    <!-- <flat-pickr v-model="startTime"/> -->
                     <!-- <flat-pickr
                       id="example-flatpickr-datetime"
                       class="form-control bg-white"
