@@ -9,7 +9,8 @@
         $route.path !== '/forget-password' &&
         $route.path !== '/reset-password' &&
         $route.path !== '/keys' &&
-        $route.path !== '/users'
+        $route.path !== '/users'&&
+        $route.path !== '/band'
       "
     />
     <router-view />
@@ -23,7 +24,8 @@
         $route.path !== '/forget-password' &&
         $route.path !== '/reset-password' &&
         $route.path !== '/keys' &&
-        $route.path !== '/users'
+        $route.path !== '/users'&&
+        $route.path !== '/band'
       "
     />
     <vue-progress-bar></vue-progress-bar>

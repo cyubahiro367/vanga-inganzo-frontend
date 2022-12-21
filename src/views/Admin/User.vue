@@ -17,6 +17,7 @@ import Header from "../../components/Admin/Header.vue";
 import SideBar from "../../components/Admin/SideBar.vue";
 import Footer from "../../components/Admin/Footer.vue";
 import DataTable from "../../components/DataTable.vue";
+import TableButtons from '../../components/items/TableUserButtons.vue'
 export default {
   components: {
     Header,
@@ -50,6 +51,10 @@ export default {
           {
             key: "since",
             title: "Since",
+          },
+          {
+            title: "Action",
+            component: TableButtons,
           },
         ],
       },

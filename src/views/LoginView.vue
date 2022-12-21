@@ -109,6 +109,7 @@ export default {
       try {
         const response = await axios.post("/api/auth/login", data);
         this.$Progress.finish();
+        console.log(response.data);
         const token = response.data.token;
         const permissionName = response.data.permissionName;
         localStorage.setItem("token", token);
@@ -116,8 +117,13 @@ export default {
         this.$store.commit("setToken", token);
         this.$store.commit("setPermissionName", permissionName);
         axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-        const toPath = this.$route.query.to || "/admin";
-        this.$router.push(toPath).catch(()=>{});
+        if(permissionName === "Admin"){
+          const toPath = this.$route.query.to || "/admin";
+          this.$router.push(toPath).catch(()=>{});
+        }else if(permissionName === "Band"){
+          const toPath = this.$route.query.to || "/band";
+          this.$router.push(toPath).catch(()=>{});
+        }
       } catch (error) {
         this.$Progress.fail();
         this.clicked = false;

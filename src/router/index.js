@@ -10,6 +10,7 @@ import UserView from '../views/Admin/User.vue'
 import KeyView from '../views/Admin/Key.vue'
 import ForgetPasswordView from '../views/ForgetPassword.vue'
 import ResetPasswordView from '../views/ResetPassword.vue'
+import BandView from '../views/Band/Dashboard.vue'
 
 Vue.use(VueRouter)
 
@@ -94,7 +95,15 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+  },
+  {
+    path: '/band',
+    name: 'Band',
+    component: BandView,
+    meta: {
+      requiresAuth: true
+    }
+  },
 ]
 
 const router = new VueRouter({
@@ -105,10 +114,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const isAuthenticated = store.state.isAuthenticated || localStorage.getItem('token')
+  const permissionName = store.state.permissionName
   if (to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated) {
     next({ name: 'Login'});
-  } else if(to.matched.some(record => record.meta.requiresUnauth) && isAuthenticated){
+  } else if(permissionName === 'Admin' && to.matched.some(record => record.meta.requiresUnauth) && isAuthenticated){
     next({ name: 'Admin'});
+  } else if(permissionName === 'Band' && to.matched.some(record => record.meta.requiresUnauth) && isAuthenticated){
+    next({ name: 'Band'});
   } else {
     next()
   }

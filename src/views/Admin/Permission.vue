@@ -21,6 +21,7 @@ import Header from "../../components/Admin/Header.vue";
 import SideBar from "../../components/Admin/SideBar.vue";
 import Footer from "../../components/Admin/Footer.vue";
 import DataTable from "../../components/DataTable.vue";
+import TableButtons from '../../components/items/TablePermissionButton.vue'
 export default {
   components: {
     Header,
@@ -44,20 +45,8 @@ export default {
             title: "Name",
           },
           {
-            key: "email",
-            title: "Email",
-          },
-          {
-            key: "phoneNumber",
-            title: "Phone Number",
-          },
-          {
-            key: "since",
-            title: "Since",
-          },
-          {
-            key: "status",
-            title: "Status",
+            title: "Action",
+            component: TableButtons,
           },
         ],
       },

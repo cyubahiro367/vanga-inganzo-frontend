@@ -30,6 +30,8 @@ const options = {
 
 axios.defaults.baseURL = process.env.VUE_APP_API_URL
 
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 Vue.config.productionTip = false
 
 Vue.use(VueProgressBar, options)
