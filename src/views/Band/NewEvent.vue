@@ -13,12 +13,12 @@
             <div class="row">
               <div class="col-xl-3 col-md-6"></div>
               <div class="col-xl-6 col-md-6">
-                <form>
+                <form @submit.prevent="submitForm">
                   <div class="form-floating mb-3">
                     <input
                       class="form-control"
                       id="inputName"
-                      type="email"
+                      type="text"
                       placeholder="Name"
                       v-model="name"
                     />
@@ -77,8 +77,9 @@
                     <button
                       style="margin-right: 10px"
                       class="btn btn-primary"
+                      @click="submitForm"
                     >
-                      Login
+                      Add
                     </button>
                   </div>
                 </form>
@@ -94,6 +95,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Header from "../../components/Band/Header.vue";
 import SideBar from "../../components/Band/SideBar.vue";
 import Footer from "../../components/Band/Footer.vue";
@@ -105,6 +107,7 @@ export default {
   },
   data(){
     return{
+      userID: null,
       name: null,
       venue: null,
       startTime: null,
@@ -112,6 +115,7 @@ export default {
       imageFile: null,
       image: null,
       updatePicture: false,
+      imagePath: null,
       config:{
         enableTime: true,
         dateFormat: "Y-m-d H:i"
@@ -119,6 +123,28 @@ export default {
     }
   },
   methods:{
+    async submitForm() {
+      this.$Progress.start();
+      this.clicked = true;
+      this.userID = this.$store.state.userID
+      const formData = new FormData();
+      formData.append("userID", this.userID);
+      formData.append("name", this.name);
+      formData.append("venue", this.venue);
+      formData.append("startTime", this.startTime);
+      formData.append("endTime", this.endTime);
+      formData.append("image", this.image);
+
+      try {
+        const response = await axios.post("/api/entertainments/create", formData, { headers: {'Content-Type': 'multipart/form-data' }});
+        this.$Progress.finish();
+        this.$router.push("/event").catch(()=>{});
+        
+      } catch (error) {
+        this.$Progress.fail();
+        this.clicked = false;
+      }
+    },
     onFileChanged(event) {
       this.image = event.target.files[0];
       if (event.target.files[0] === undefined) {
@@ -138,7 +164,7 @@ export default {
         }
       }
     },
-  }
+  },
 };
 </script>
 

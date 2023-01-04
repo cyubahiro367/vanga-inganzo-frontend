@@ -13,6 +13,7 @@ import ResetPasswordView from '../views/ResetPassword.vue'
 import BandView from '../views/Band/Dashboard.vue'
 import EventView from '../views/Band/Event.vue'
 import NewEventView from '../views/Band/NewEvent.vue'
+import EventUpdateView from '../views/Band/EventUpdate.vue'
 
 Vue.use(VueRouter)
 
@@ -118,6 +119,14 @@ const routes = [
     path: '/newEvent',
     name: 'NewEvent',
     component: NewEventView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/event/:id',
+    name: 'EventUpdate',
+    component: EventUpdateView,
     meta: {
       requiresAuth: true
     }
