@@ -17,7 +17,7 @@
                         Enter your email address and we will send you a link to
                         reset your password.
                       </div>
-                      <form>
+                      <form @submit.prevent="SubmitForm"  method="POST">
                         <div class="form-floating mb-3">
                           <input
                             class="form-control"
